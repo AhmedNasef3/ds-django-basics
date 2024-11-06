@@ -22,7 +22,8 @@ from posts.views import post_list,post_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('blog/',post_list)
+    path('blog/',post_list),
+    path('blog/<int:post_id>',post_detail)
 ]
 
 urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

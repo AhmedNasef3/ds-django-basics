@@ -6,5 +6,6 @@ def post_list(request):
     return render(request,'posts.html',{'posts':data})
 
 
-def post_detail(request):
-    pass
+def post_detail(request,post_id):
+    data=post.objects.get(id=post_id)
+    return render(request,'detail.html',{'post':data})

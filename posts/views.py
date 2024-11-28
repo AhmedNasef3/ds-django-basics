@@ -23,3 +23,22 @@ def post_create(request):
     else:
         form=PostForm()
     return render(request,'new.html',{'form':form})
+
+def post_edit(request,post_id):
+    data=Post.objects.get(id=post_id)
+    if request.method=='POST':
+        form=PostForm(request.POST,request.FILES,instance=data)
+        if form.is_valid():
+            myform=form.save(commit=False)
+            author=Author.objects.get(user=request.user)
+            myform.author=author
+            myform.save()
+            return redirect("/blog")
+    else:
+        form=PostForm(instance=data)
+    return render(request,'edit.html',{'form':form})
+
+def post_delete(request,post_id):
+    data=Post.objects.get(id=post_id)
+    data.delete()
+    return redirect('/blog')

@@ -19,13 +19,15 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from posts.views import post_list,post_detail,post_create
+from posts.views import post_list,post_detail,post_create,post_edit,post_delete
 urlpatterns = [
     path("admin/", admin.site.urls),
      path('summernote/', include('django_summernote.urls')),
      path('blog/' , post_list),
      path('blog/create',post_create),
-     path('blog/<int:post_id>',post_detail)
+     path('blog/<int:post_id>',post_detail),
+     path('blog/<int:post_id>/edit',post_edit),
+     path('blog/<int:post_id>/delete',post_delete)
 ]
 
 urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

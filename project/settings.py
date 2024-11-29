@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'posts',
     "taggit",
-    "django_summernote"
+    "django_summernote",
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

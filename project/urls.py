@@ -20,7 +20,7 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import post_list,post_detail,post_create,post_edit,post_delete
-from posts.api import PostAPI,PostDetailAPI
+from posts.api import PostListCreateAPI,PostRetUpdDestAPI
 urlpatterns = [
     path("admin/", admin.site.urls),
      path('summernote/', include('django_summernote.urls')),
@@ -29,8 +29,9 @@ urlpatterns = [
      path('blog/<int:post_id>',post_detail),
      path('blog/<int:post_id>/edit',post_edit),
      path('blog/<int:post_id>/delete',post_delete),
-      path('blog/api' , PostAPI.as_view()),
-      path('blog/api/<int:pk>' , PostDetailAPI.as_view())
+     path('blog/api' , PostListCreateAPI.as_view()),
+     path('blog/api/<int:pk>' , PostRetUpdDestAPI.as_view())
+      
 ]
 
 urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
